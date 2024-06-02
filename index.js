@@ -4,7 +4,6 @@ const UsersScheme = require("./models.js");
 const express = require("express");
 const argon2 = require("argon2");
 const router = express();
-const port = 3000;
 
 router.use(express.json());
 
@@ -26,8 +25,8 @@ const syncDB = async (sequelize) => {
   }
 };
 
-const sequelize = new Sequelize("recap", "karol", "root", {
-  host: "localhost",
+const sequelize = new Sequelize(process.env.DATABASE_NAME, process.env.DATABASE_USERNAME, process.env.DATABASE_PASSWORD, {
+  host: "database",
   dialect: "postgres",
 });
 
@@ -60,4 +59,4 @@ router.post("/create-account", async (req, res) => {
   }
 });
 
-router.listen(3000);
+router.listen(process.env.BACKEND_PORT);
