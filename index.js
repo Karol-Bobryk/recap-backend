@@ -4,7 +4,9 @@ const UsersScheme = require("./models.js");
 const express = require("express");
 const argon2 = require("argon2");
 const router = express();
+const cors = require('cors');
 
+router.use(cors())
 router.use(express.json());
 
 const authenticateDBConnection = async (sequelize) => {
